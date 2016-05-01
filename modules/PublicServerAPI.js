@@ -73,12 +73,13 @@ export function createServer(getApp) {
 
 function addMiddleware(server) {
   if (process.env.NODE_ENV === 'production') {
-    server.use(morgan('combined'))
+    // server.use(morgan('combined'))
     server.use(compression())
     server.use(express.static(PUBLIC_DIR, { maxAge: 31536000000 }))
-  } else {
-    server.use(morgan('dev'))
   }
+  // } else {
+  //   server.use(morgan('dev'))
+  // }
 
   server.use(express.static(path.join(APP_PATH, 'static')))
   server.use(bodyParser.json())
@@ -208,5 +209,3 @@ function sendNoRoutesMatched(res) {
     </ErrorMessage>
   ))
 }
-
-
